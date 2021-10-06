@@ -58,4 +58,16 @@ function transfer(address _to, uint256 _value) public returns (bool success) {
     }
     // Transfer from
 
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        // Require _from has enough tokens
+        require(_value <= balanceOf[_from]);
+        // Require allowance is big enough
+        require(_value <= allowance[_from][msg.sender]);
+        // Change the balance
+        //Update the allowance
+        // Transfer event
+        emit Transfer(_from, _to, _value);
+        // return boolean
+        return true;
+    }
 }

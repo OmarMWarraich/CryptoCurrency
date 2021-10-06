@@ -29,4 +29,14 @@ contract("DappToken", function(accounts) {
              assert.equal(adminBalance.toNumber(),1000000, 'it allocates the initial supply to the admin account')
         });
     });
-});
+
+    it('transfers token ownership', function() {
+        return DappToken.deployed().then(function(instance) {
+          tokenInstance = instance;
+          // Test `require` statement first by transferring something larger than the sender's balance
+          return tokenInstance.transfer.call(accounts[1], 99999999999999999);
+        }).then(assert.fail).catch(function(error) {
+          assert(error.message, 'error message must contain revert');
+        })
+      });
+    });

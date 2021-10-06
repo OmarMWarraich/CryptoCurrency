@@ -2,12 +2,16 @@
 pragma solidity ^0.5.0;
 
 contract DappToken {
-    // Constructor
-    // Set the total no. of tokens
-    // Read the total no. of tokens
+    // Name
+    string public name = "DApp Token";
+    // Symbol
+    
     uint256 public totalSupply;
 
-    constructor() public {
-        totalSupply = 1000000;
+    mapping(address => uint256) public balanceOf;
+
+    constructor(uint256 _initialSupply) public {
+       balanceOf[msg.sender] = _initialSupply;
+       totalSupply = _initialSupply;
     }
 }

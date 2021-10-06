@@ -14,7 +14,15 @@ contract DappToken {
         uint256 _value
     );
 
+    // approve
+    event Approval(
+        address indexed _owner,
+        address indexed _spender,
+        uint256 _value
+    );
+
     mapping(address => uint256) public balanceOf;
+    // allowance
 
     constructor (uint256 _initialSupply) public {
        balanceOf[msg.sender] = _initialSupply;
@@ -22,7 +30,7 @@ contract DappToken {
     }
 
 
-// Transfer
+// Transfer Function
 function transfer(address _to, uint256 _value) public returns (bool success) {
     // Exception if account doesnt have enough
     require(balanceOf[msg.sender] >= _value);
@@ -36,4 +44,17 @@ function transfer(address _to, uint256 _value) public returns (bool success) {
     // Return a boolean
     return true;
 }
+    // Delegated Transfer
+
+    // approve
+    function approve(address _spender, uint256 _value)public returns (bool success) {
+        // handle allowance
+
+        // Approve event
+        emit Approval(msg.sender, _spender, _value);
+        
+        return true;
+    }
+    // Transfer from
+
 }

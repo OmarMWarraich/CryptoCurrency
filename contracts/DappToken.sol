@@ -4,8 +4,10 @@ pragma solidity ^0.5.0;
 contract DappToken {
     // Name
     string public name = "DApp Token";
+    string public symbol = "DAPP";
+    string public standard = "DApp Token v1.0";
     // Symbol
-    
+
     uint256 public totalSupply;
 
     mapping(address => uint256) public balanceOf;

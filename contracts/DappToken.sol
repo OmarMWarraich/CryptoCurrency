@@ -64,6 +64,9 @@ function transfer(address _to, uint256 _value) public returns (bool success) {
         // Require allowance is big enough
         require(_value <= allowance[_from][msg.sender]);
         // Change the balance
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+
         //Update the allowance
         // Transfer event
         emit Transfer(_from, _to, _value);

@@ -66,8 +66,8 @@ function transfer(address _to, uint256 _value) public returns (bool success) {
         // Change the balance
         balanceOf[_from] -= _value;
         balanceOf[_to] += _value;
-
         //Update the allowance
+        allowance[_from][msg.sender] -= _value;
         // Transfer event
         emit Transfer(_from, _to, _value);
         // return boolean
